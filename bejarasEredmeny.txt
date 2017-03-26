@@ -1,0 +1,38 @@
+Working in project testJava8Project
+
+Default Package
+
+Package testJava8Project
+  - Source file App.java
+    Has number of lines: 33
+      Class App
+      - Field name instance
+        Modifiers private 
+      - Method name main
+        Signature ([QString;)V
+        Modifiers public static 
+        Return Type V
+      - Method name getHelloMessage
+        Signature (QLanguage;)QString;
+        Modifiers private static 
+        Return Type QString;
+      Class MyAnonymusClass
+
+Package testJava8Project.i18n
+  - Source file NiceAnnotation.java
+    Has number of lines: 6
+      Annotation NiceAnnotation
+  - Source file Language.java
+    Has number of lines: 9
+      Enum Language
+      - Field name HU
+        Modifiers package private 
+      - Field name EN
+        Modifiers package private 
+      - Field name ES
+        Modifiers package private 
+      - Field name DE
+        Modifiers package private 
+  - Source file IInterface.java
+    Has number of lines: 6
+      Interface IInterface
