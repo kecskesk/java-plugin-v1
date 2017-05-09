@@ -1,10 +1,5 @@
 package kecskesk.quickfix;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IMethod;
@@ -19,11 +14,10 @@ import org.eclipse.jdt.ui.text.java.IProblemLocation;
 import org.eclipse.jdt.ui.text.java.IQuickAssistProcessor;
 import org.eclipse.jface.viewers.StyledString;
 
+import kecskesk.quickfix.engine.NullCheckRefactorEngine;
+
 @SuppressWarnings("restriction")
 public class MyQuickAssistProcessor implements IQuickAssistProcessor {
-
-	private static final String REGEX_NULL = "([a-z][a-zA-Z0-9]*) *== ?null";
-	private static final String REGEX_NOT_NULL = "([a-z][a-zA-Z0-9]*) *!= ?null";
 
 	@Override
 	public boolean hasAssists(IInvocationContext context) throws CoreException {
@@ -56,13 +50,12 @@ public class MyQuickAssistProcessor implements IQuickAssistProcessor {
 						IMethod[] methods = type.getMethods();
 
 						for (IMethod method : methods) {
-							System.out.println("Found a method: ");
 							String source = method.getSource();
 							if ((source.contains("==") || source.contains("!=")) && source.contains("null")) {
-								refactorNullChecks(type, method, source);
+								NullCheckRefactorEngine refactorEngine = new NullCheckRefactorEngine(type, method, source); 
+								refactorEngine.refactor();
 							}
 						}
-
 					} catch (JavaModelException e) {
 						e.printStackTrace();
 					}
@@ -71,36 +64,6 @@ public class MyQuickAssistProcessor implements IQuickAssistProcessor {
 		} };
 	}
 
-	private void refactorNullChecks(IType type, IMethod method, String source) throws JavaModelException {
-		String modifiedSource = source;
-
-		Set<String> variablesToRefactor = new HashSet<>();
-
-		Pattern notNullPattern = Pattern.compile(REGEX_NOT_NULL);
-		Pattern nullPattern = Pattern.compile(REGEX_NULL);
-
-		Matcher notNullMatcher = notNullPattern.matcher(source);
-		Matcher nullMatcher = nullPattern.matcher(source);
-
-		while (notNullMatcher.find()) {
-			System.out.println("Found value nnm: " + notNullMatcher.group(1));
-			variablesToRefactor.add(notNullMatcher.group(1));
-		}
-
-		while (nullMatcher.find()) {
-			System.out.println("Found value nm: " + nullMatcher.group(1));
-			variablesToRefactor.add(nullMatcher.group(1));
-		}
-
-		
-		System.out.println(variablesToRefactor.size());
-		
-		
-		/*modifiedSource = modifiedSource.replaceAll(REGEX_NOT_NULL, "$1.isPresent()");
-		modifiedSource = modifiedSource.replaceAll(REGEX_NULL, "!$1.isPresent()");
-
-		method.delete(true, null);
-		type.createMethod(modifiedSource, null, true, null);*/
-	}
+	
 
 }

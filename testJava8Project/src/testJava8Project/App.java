@@ -44,22 +44,29 @@ public class App {
 		boolean doggy = false;
 		boolean babyiesAreBorn = true;
 		Language languageBaBy = language;
-		Language languageB12 = languageBaBy;
+		String languageB12 = languageBaBy.name();
+		
+		languageBaBy = Language.valueOf("TEST1" + 
+			 	"TEST2");
 
 		if (!doggy && language == null || babyiesAreBorn) {
-			return "null";
+			return String.valueOf(language.ordinal());
 		}
 
 		if (!doggy && languageBaBy != null || babyiesAreBorn) {
-			return "null";
+			return languageBaBy.name() + languageBaBy.hashCode() + languageBaBy.toString();
 		}
 
-		if (!doggy && languageB12 != null || babyiesAreBorn) {
-			return "null";
+		if (languageBaBy instanceof Language) {
+			getHelloMessage(languageBaBy);	
+		}		
+
+		if (!doggy && languageB12.isEmpty() || babyiesAreBorn) {
+			return languageB12;
 		}
 
 		if (!doggy && language == null || babyiesAreBorn) {
-			return "null";
+			return language.toString();
 		}
 
 		switch (language) {
