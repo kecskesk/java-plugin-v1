@@ -43,27 +43,14 @@ public class MyQuickAssistProcessor implements IQuickAssistProcessor {
 
 			@Override
 			public void apply(org.eclipse.jface.text.ITextViewer viewer, char trigger, int stateMask, int offset) {
-				if (context instanceof AssistContext) {
-					AssistContext assistContext = (AssistContext) context;
-					try {
-						IType type = assistContext.getCompilationUnit().findPrimaryType();
-						IMethod[] methods = type.getMethods();
-
-						for (IMethod method : methods) {
-							String source = method.getSource();
-							if ((source.contains("==") || source.contains("!=")) && source.contains("null")) {
-								NullCheckRefactorEngine refactorEngine = new NullCheckRefactorEngine(type, method, source); 
-								refactorEngine.refactor();
-							}
-						}
-					} catch (JavaModelException e) {
-						e.printStackTrace();
+				for (IProblemLocation problem : locations) {
+					if (context instanceof AssistContext) {
+						ICompilationUnit cu = context.getCompilationUnit();
+						ASTNode selectedNode = problem.getCoveredNode(context.getASTRoot());
 					}
 				}
 			}
 		} };
 	}
-
-	
 
 }
