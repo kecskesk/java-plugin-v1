@@ -1,11 +1,11 @@
 package p;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
+import java.util.Optional;
 
 public class TestAnnot {
-	void foo(@Nullable Object o, @NonNull P1 p1) {
-		if (o != null) {
+	void foo(Optional<Object> o, @NonNull P1 p1) {
+		if (!o.isPresent()) {
 			// some code here
 			o.toString();
 		}
