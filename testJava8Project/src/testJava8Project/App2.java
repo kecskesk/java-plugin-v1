@@ -41,24 +41,24 @@ public class App2 {
 			return "null";
 		}
 		
-		boolean doggy = false;
-		boolean babyiesAreBorn = true;
-		Language languageBaBy = language;
-		Language languageB12 = languageBaBy;
+		boolean checkDualLanguages = false;
+		boolean useDictionary = true;
+		Language testLanguageOne = language;
+		Language testLanguageTwo = testLanguageOne;
 
-		if (!doggy && language == null || babyiesAreBorn) {
+		if (!checkDualLanguages && language == null || useDictionary) {
 			return "null";
 		}
 
-		if (!doggy && languageBaBy == null || babyiesAreBorn) {
+		if (!checkDualLanguages && testLanguageOne == null || useDictionary) {
 			return "null";
 		}
 
-		if (!doggy && languageB12 == null || babyiesAreBorn) {
+		if (!checkDualLanguages && testLanguageTwo == null || useDictionary) {
 			return "null";
 		}
 
-		if (!doggy && language == null || babyiesAreBorn) {
+		if (!checkDualLanguages && language == null || useDictionary) {
 			return "null";
 		}
 
