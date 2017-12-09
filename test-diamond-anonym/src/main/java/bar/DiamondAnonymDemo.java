@@ -1,5 +1,7 @@
 package bar;
 
+import java.util.ArrayList;
+
 public class DiamondAnonymDemo {
 	public abstract class TestClass<T> {
 		protected T myObject;
@@ -21,6 +23,10 @@ public class DiamondAnonymDemo {
 	}
 	
 	public void initTestClassWithInteger() {
+		ArrayList<Integer> my_list = new ArrayList<Integer>() {
+			
+		};
+		
 		TestClass<Integer> integerTest = new TestClass<Integer>(23) {
 			String print() {
 				return Integer.valueOf(myObject.hashCode()).toString();
