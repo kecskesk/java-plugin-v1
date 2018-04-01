@@ -70,6 +70,8 @@ public class ImmutableDemo {
 
 	public static Set<String> exampleSet2() {
 		return Collections.unmodifiableSet(new HashSet<String>() {
+			private static final long serialVersionUID = 3117539989824390901L;
+
 			{
 				add("foo");
 				add("bar");
@@ -80,6 +82,8 @@ public class ImmutableDemo {
 
 	public static Map<String, Object> exampleMap2() {
 		return Collections.unmodifiableMap(new HashMap<String, Object>() {
+			private static final long serialVersionUID = -4433298602945730015L;
+
 			{
 				put("foo", new Object());
 				put("bar", "String");
