@@ -1,21 +1,17 @@
-package testJava8Project;
+package bar;
 
 import java.util.Optional;
 import java.util.Random;
 
-import testJava8Project.i18n.IInterface;
-import testJava8Project.i18n.Language;
+import bar.i18n.Language;
 
-public class App2 {
-	private MyAnonymusClass instance = new MyAnonymusClass();
+public class OptionalDemo2 {
 	private final Random random = new Random();
 
 	public static void main(String[] args) {
-		App2 appInstance = new App2();
+		OptionalDemo2 appInstance = new OptionalDemo2();
 
 		Optional<Language> langOpt = Language.findByValue(appInstance.random.nextInt(6));
-
-		System.out.println(appInstance.instance.read("nice message"));
 
 		System.out.println(goodGetHelloMessage(langOpt));
 		System.out.println(getHelloMessage(Language.ES));
@@ -29,13 +25,7 @@ public class App2 {
 			return "Please select a language";
 		}
 	}
-
-	private class MyAnonymusClass implements IInterface {
-		public String read(String str) {
-			return "I just read this: " + str;
-		}
-	}
-
+	
 	private static String getHelloMessage(Language language) {
 		if (language == null) {
 			return "null";
