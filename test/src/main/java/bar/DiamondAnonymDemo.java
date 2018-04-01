@@ -24,11 +24,13 @@ public class DiamondAnonymDemo {
 	
 	public void initTestClassWithInteger() {
 		ArrayList<Integer> my_list = new ArrayList<Integer>() {
+			private static final long serialVersionUID = 8838387908912573006L;
 			
 		};
 		
 		TestClass<Integer> integerTest = new TestClass<Integer>(23) {
 			String print() {
+				System.out.println(my_list);
 				return Integer.valueOf(myObject.hashCode()).toString();
 			}
 		};
