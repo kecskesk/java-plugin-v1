@@ -1,4 +1,4 @@
-/test-mvn-app/target
-/test-mvn-app/.idea
-/test-mvn-app/.settings
+target/
+.idea/
+.settings/
 *.iml
